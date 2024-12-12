@@ -1,0 +1,50 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:maps="clr-namespace:Microsoft.Maui.Controls.Maps;assembly=Microsoft.Maui.Controls.Maps"
+             xmlns:skia="clr-namespace:SkiaSharp.Views.Maui.Controls;assembly=SkiaSharp.Views.Maui.Controls"
+             x:Class="LocationTracker.MainPage"
+             Title="Location Tracker">
+
+    <Grid>
+        <!-- Define rows -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <!-- Map and heatmap -->
+            <RowDefinition Height="Auto" />
+            <!-- Buttons -->
+        </Grid.RowDefinitions>
+
+        <!-- Map -->
+        <maps:Map x:Name="MapView"
+                  IsShowingUser="True"
+                  IsZoomEnabled="True"
+                  MapType="Street"
+                  Grid.Row="0" />
+        <!-- Assign to first row -->
+
+        <!-- Heatmap Canvas (Overlay) -->
+        <skia:SKCanvasView x:Name="HeatmapCanvas"
+                           PaintSurface="OnPaintSurface"
+                           BackgroundColor="Transparent"
+                           Grid.Row="0" />
+        <!-- Same row as Map to overlay -->
+
+        <!-- Button Section -->
+        <StackLayout Orientation="Horizontal"
+                     HorizontalOptions="Center"
+                     VerticalOptions="End"
+                     Grid.Row="1"
+                     Spacing="20"
+                     Padding="10">
+            <!-- Get My Location Button -->
+            <Button Text="Get My Location"
+                    Clicked="OnGetLocationClicked"
+                    Padding="10" />
+
+            <!-- Save My Location Button -->
+            <Button Text="Save My Location"
+                    Clicked="OnSaveLocationClicked"
+                    Padding="10" />
+        </StackLayout>
+    </Grid>
+</ContentPage>
